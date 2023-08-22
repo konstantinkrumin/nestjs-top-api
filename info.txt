@@ -1,0 +1,11 @@
+// TO START DOCKER CONTAINER WITH DB
+docker-compose up -d
+
+// TO SEE ALL CONTAINERS 
+docker ps
+
+// TO STOP A CONTAINER 
+docker stop mongo
+
+// TO START A CONTAINER 
+docker start mongo
