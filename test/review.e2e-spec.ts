@@ -13,7 +13,7 @@ const testDto: CreateReviewDto = {
 	title: 'Заголовок',
 	description: 'Описание тестовое',
 	rating: 5,
-	productId
+	productId,
 };
 
 describe('AppController (e2e)', () => {
@@ -72,7 +72,7 @@ describe('AppController (e2e)', () => {
 			.delete('/review/' + new Types.ObjectId().toHexString())
 			.expect(404, {
 				statusCode: 404,
-				message: REVIEW_NOT_FOUND
+				message: REVIEW_NOT_FOUND,
 			});
 	});
 
