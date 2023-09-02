@@ -9,3 +9,6 @@ docker stop mongo
 
 // TO START A CONTAINER 
 docker start mongo
+
+// TO TEST WITH CLINICJS
+clinic doctor --on-port 'autocannon localhost:$PORT/api/review/byProduct/3sdfghsdf3dr' -- node dist/main.js
