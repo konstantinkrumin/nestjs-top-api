@@ -8,7 +8,7 @@ import { ProductModel } from './product.model';
 
 @Injectable()
 export class ProductService {
-	constructor(@InjectModel(ProductModel) private readonly productModel: ModelType<ProductModel>) { }
+	constructor(@InjectModel(ProductModel) private readonly productModel: ModelType<ProductModel>) {}
 
 	async create(dto: CreateProductDto) {
 		return this.productModel.create(dto);
@@ -27,34 +27,40 @@ export class ProductService {
 	}
 
 	async findWithReviews(dto: FindProductDto) {
-		return this.productModel.aggregate([
-			{
-				$match: {
-					categories: dto.category
-				}
-			},
-			{
-				$sort: {
-					_id: 1
-				}
-			},
-			{
-				$limit: dto.limit
-			},
-			{
-				$lookup: {
-					from: 'Review',
-					localField: '_id',
-					foreignField: 'productId',
-					as: 'reviews'
-				}
-			},
-			{
-				$addFields: {
-					reviewCount: { $size: '$reviews' },
-					reviewAvg: { $avg: '$reviews.rating' }
-				}
-			}
-		]).exec() as (ProductModel & { review: ReviewModel[], reviewCount: number, reviewAvg: number })[];
+		return this.productModel
+			.aggregate([
+				{
+					$match: {
+						categories: dto.category,
+					},
+				},
+				{
+					$sort: {
+						_id: 1,
+					},
+				},
+				{
+					$limit: dto.limit,
+				},
+				{
+					$lookup: {
+						from: 'Review',
+						localField: '_id',
+						foreignField: 'productId',
+						as: 'reviews',
+					},
+				},
+				{
+					$addFields: {
+						reviewCount: { $size: '$reviews' },
+						reviewAvg: { $avg: '$reviews.rating' },
+					},
+				},
+			])
+			.exec() as (ProductModel & {
+			review: ReviewModel[];
+			reviewCount: number;
+			reviewAvg: number;
+		})[];
 	}
 }

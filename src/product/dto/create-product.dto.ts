@@ -48,4 +48,3 @@ export class CreateProductDto {
 	@Type(() => ProductCharacteristicDto)
 	characteristics: ProductCharacteristicDto[];
 }
-

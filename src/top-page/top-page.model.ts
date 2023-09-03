@@ -5,7 +5,7 @@ export enum TopLevelCategory {
 	Courses,
 	Services,
 	Books,
-	Products
+	Products,
 }
 
 export class HhData {
@@ -30,7 +30,7 @@ export class TopPageAdvantage {
 	description: string;
 }
 
-export interface TopPageModel extends Base { }
+export interface TopPageModel extends Base {}
 export class TopPageModel extends TimeStamps {
 	@prop({ enum: TopLevelCategory })
 	firstCategory: TopLevelCategory;
