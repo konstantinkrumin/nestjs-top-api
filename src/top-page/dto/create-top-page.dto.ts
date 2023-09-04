@@ -26,7 +26,7 @@ export class TopPageAdvantageDto {
 
 export class CreateTopPageDto {
 	@IsEnum(TopLevelCategory)
-	firstCategory: string;
+	firstCategory: TopLevelCategory;
 
 	@IsString()
 	secondCategory: string;
