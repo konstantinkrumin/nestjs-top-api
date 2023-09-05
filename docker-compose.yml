@@ -1,21 +1,32 @@
-version: '3.1'
-services:
-  nest:
-    image: nest
-    container_name: nest
+# version: '3.1'
+# services:
+#   nest:
+#     image: nest
+#     container_name: nest
+#     restart: always
+#     ports:
+#       - 3000:3000
+#     volumes:
+#       - ./.env:/app/.env
+#   mongo:
+#     image: mongo
+#     container_name: mongo
+#     restart: always
+#     environment:
+#       - MONGO_INITDB_ROOT_USERNAME=admin
+#       - MONGO_INITDB_ROOT_PASSWORD=admin
+#     ports:
+#       - 27019:27017
+#     volumes:
+#       - ./mongo-data:/data/db
+
+version: '3'
+service:
+  top.api:
+    image: top-api:latest
+    container_name: top-api
     restart: always
     ports:
       - 3000:3000
     volumes:
-      - ./.env:/app/.env
-  mongo:
-    image: mongo
-    container_name: mongo
-    restart: always
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME=admin
-      - MONGO_INITDB_ROOT_PASSWORD=admin
-    ports:
-      - 27019:27017
-    volumes:
-      - ./mongo-data:/data/db
+      - ./.env:/opt/app/.env
