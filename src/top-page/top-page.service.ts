@@ -17,15 +17,28 @@ export class TopPageService {
 		return this.topPageModel.findById(id).exec();
 	}
 
+	async findByAlias(alias: string) {
+		return this.topPageModel.findOne({ alias }).exec();
+	}
+
+	async findByCategory(dto: FindTopPageDto) {
+		return this.topPageModel
+			.find(
+				{ firstCategory: dto.firstCategory },
+				{
+					alias: 1,
+					secondCategory: 1,
+					title: 1,
+				},
+			)
+			.exec();
+	}
+
 	async deleteById(id: string) {
 		return this.topPageModel.findByIdAndDelete(id).exec();
 	}
 
 	async updateById(id: string, dto: CreateTopPageDto) {
 		return this.topPageModel.findByIdAndUpdate(id, dto, { new: true }).exec();
-	}
-
-	async findByCategory(dto: FindTopPageDto) {
-		return this.topPageModel.find({ firstCategory: dto.firstCategory });
 	}
 }

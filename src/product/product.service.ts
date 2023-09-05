@@ -18,6 +18,10 @@ export class ProductService {
 		return this.productModel.findById(id).exec();
 	}
 
+	async findByAlias(alias: string) {
+		return this.productModel.findOne({ alias }).exec();
+	}
+
 	async deleteById(id: string) {
 		return this.productModel.findByIdAndDelete(id).exec();
 	}
