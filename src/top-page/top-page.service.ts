@@ -25,14 +25,24 @@ export class TopPageService {
 
 	async findByCategory(dto: FindTopPageDto) {
 		return this.topPageModel
-			.find(
-				{ firstCategory: dto.firstCategory },
+			.aggregate([
 				{
-					alias: 1,
-					secondCategory: 1,
-					title: 1,
+					$match: {
+						firstCategory: dto.firstCategory,
+					},
 				},
-			)
+				{
+					$group: {
+						_id: { secondCategory: '$secondCategory' },
+						pages: {
+							$push: {
+								alias: '$alias',
+								title: '$title',
+							},
+						},
+					},
+				},
+			])
 			.exec();
 	}
 
