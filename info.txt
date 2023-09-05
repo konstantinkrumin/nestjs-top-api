@@ -12,3 +12,6 @@ docker start mongo
 
 // TO TEST WITH CLINICJS
 clinic doctor --on-port 'autocannon localhost:$PORT/api/review/byProduct/3sdfghsdf3dr' -- node dist/main.js
+
+// TO BUILD WITH DOCKER
+ docker build -t top-api .
