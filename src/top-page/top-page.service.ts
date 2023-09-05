@@ -1,14 +1,16 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, UseGuards } from '@nestjs/common';
 import { InjectModel } from 'nestjs-typegoose';
 import { TopPageModel } from './top-page.model';
 import { ModelType } from '@typegoose/typegoose/lib/types';
 import { CreateTopPageDto } from './dto/create-top-page.dto';
 import { FindTopPageDto } from './dto/find-top-page.dto';
+import { JwtAuthGuard } from 'src/auth/guards/jwt.guard';
 
 @Injectable()
 export class TopPageService {
 	constructor(@InjectModel(TopPageModel) private readonly topPageModel: ModelType<TopPageModel>) {}
 
+	@UseGuards(JwtAuthGuard)
 	async create(dto: CreateTopPageDto) {
 		return this.topPageModel.create(dto);
 	}
@@ -34,10 +36,12 @@ export class TopPageService {
 			.exec();
 	}
 
+	@UseGuards(JwtAuthGuard)
 	async deleteById(id: string) {
 		return this.topPageModel.findByIdAndDelete(id).exec();
 	}
 
+	@UseGuards(JwtAuthGuard)
 	async updateById(id: string, dto: CreateTopPageDto) {
 		return this.topPageModel.findByIdAndUpdate(id, dto, { new: true }).exec();
 	}
