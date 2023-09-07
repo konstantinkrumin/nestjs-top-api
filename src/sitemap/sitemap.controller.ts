@@ -1,9 +1,10 @@
 import { ConfigService } from '@nestjs/config';
-import { TopPageService } from './../top-page/top-page.service';
 import { Controller, Get, Header } from '@nestjs/common';
 import { subDays, format } from 'date-fns';
 import { Builder } from 'xml2js';
+
 import { CATEGORY_URL } from './sitemap.constants';
+import { TopPageService } from './../top-page/top-page.service';
 
 @Controller('sitemap')
 export class SitemapController {

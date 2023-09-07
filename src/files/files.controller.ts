@@ -1,16 +1,17 @@
 import {
-	Controller,
-	HttpCode,
 	Post,
-	UploadedFile,
+	HttpCode,
 	UseGuards,
+	Controller,
+	UploadedFile,
 	UseInterceptors,
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { JwtAuthGuard } from 'src/auth/guards/jwt.guard';
-import { FilesService } from './files.service';
-import { FileElementResponse } from './dto/file-element.response';
+
 import { MFile } from './dto/mfile.class';
+import { FilesService } from './files.service';
+import { JwtAuthGuard } from 'src/auth/guards/jwt.guard';
+import { FileElementResponse } from './dto/file-element.response';
 
 @Controller('files')
 export class FilesController {

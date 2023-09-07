@@ -1,7 +1,8 @@
 import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
+
 import { SitemapController } from './sitemap.controller';
 import { TopPageModule } from 'src/top-page/top-page.module';
-import { ConfigModule } from '@nestjs/config';
 
 @Module({
 	controllers: [SitemapController],

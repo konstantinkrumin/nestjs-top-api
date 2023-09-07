@@ -1,8 +1,10 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
-import * as request from 'supertest';
-import { AppModule } from './../src/app.module';
+
 import { disconnect } from 'mongoose';
+import * as request from 'supertest';
+
+import { AppModule } from './../src/app.module';
 import { AuthDto } from 'src/auth/dto/auth.dto';
 
 const loginDto: AuthDto = {

@@ -1,9 +1,10 @@
 import { Module } from '@nestjs/common';
 import { TypegooseModule } from 'nestjs-typegoose';
-import { TopPageController } from './top-page.controller';
+
+import { HhModule } from 'src/hh/hh.module';
 import { TopPageModel } from './top-page.model';
 import { TopPageService } from './top-page.service';
-import { HhModule } from 'src/hh/hh.module';
+import { TopPageController } from './top-page.controller';
 
 @Module({
 	controllers: [TopPageController],

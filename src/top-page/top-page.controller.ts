@@ -1,23 +1,24 @@
-import { HhService } from './../hh/hh.service';
-import { TopPageService } from './top-page.service';
 import {
-	Body,
-	Controller,
-	Delete,
 	Get,
-	HttpCode,
-	NotFoundException,
+	Post,
+	Body,
 	Param,
 	Patch,
-	Post,
+	Delete,
+	HttpCode,
 	UsePipes,
+	Controller,
 	ValidationPipe,
+	NotFoundException,
 } from '@nestjs/common';
+import { Cron, CronExpression, SchedulerRegistry } from '@nestjs/schedule';
+
+import { HhService } from './../hh/hh.service';
+import { TopPageService } from './top-page.service';
 import { FindTopPageDto } from './dto/find-top-page.dto';
 import { CreateTopPageDto } from './dto/create-top-page.dto';
 import { IdValidationPipe } from 'src/pipes/id-validation.pipe';
 import { TOP_PAGE_NOT_FOUND_ERROR } from './top-page.constants';
-import { Cron, CronExpression, SchedulerRegistry } from '@nestjs/schedule';
 
 @Controller('top-page')
 export class TopPageController {

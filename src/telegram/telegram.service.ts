@@ -1,5 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { Telegraf } from 'telegraf';
+
 import { ITelegramOptions } from './telergram.interface';
 import { TELEGRAM_MODULE_OPTIONS } from './telegram.constants';
 

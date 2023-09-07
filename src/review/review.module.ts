@@ -1,8 +1,9 @@
 import { Module } from '@nestjs/common';
 import { TypegooseModule } from 'nestjs-typegoose';
-import { ReviewController } from './review.controller';
+
 import { ReviewModel } from './review.model';
 import { ReviewService } from './review.service';
+import { ReviewController } from './review.controller';
 import { TelegramModule } from 'src/telegram/telegram.module';
 
 @Module({

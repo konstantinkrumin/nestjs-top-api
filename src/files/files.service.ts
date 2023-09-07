@@ -1,7 +1,9 @@
 import { Injectable } from '@nestjs/common';
+
 import { format } from 'date-fns';
 import { path } from 'app-root-path';
 import { ensureDir, writeFile } from 'fs-extra';
+
 import * as sharp from 'sharp';
 
 import { FileElementResponse } from './dto/file-element.response';

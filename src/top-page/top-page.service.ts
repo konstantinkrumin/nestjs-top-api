@@ -1,12 +1,14 @@
 import { Injectable, UseGuards } from '@nestjs/common';
 import { InjectModel } from 'nestjs-typegoose';
-import { TopPageModel } from './top-page.model';
+
+import { Types } from 'mongoose';
+import { addDays } from 'date-fns';
 import { ModelType } from '@typegoose/typegoose/lib/types';
-import { CreateTopPageDto } from './dto/create-top-page.dto';
+
+import { TopPageModel } from './top-page.model';
 import { FindTopPageDto } from './dto/find-top-page.dto';
 import { JwtAuthGuard } from 'src/auth/guards/jwt.guard';
-import { addDays } from 'date-fns';
-import { Types } from 'mongoose';
+import { CreateTopPageDto } from './dto/create-top-page.dto';
 
 @Injectable()
 export class TopPageService {

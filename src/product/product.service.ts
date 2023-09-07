@@ -1,10 +1,11 @@
 import { Injectable } from '@nestjs/common';
-import { ModelType } from '@typegoose/typegoose/lib/types';
 import { InjectModel } from 'nestjs-typegoose';
-import { ReviewModel } from 'src/review/review.model';
-import { CreateProductDto } from './dto/create-product.dto';
-import { FindProductDto } from './dto/find-product.dto';
+import { ModelType } from '@typegoose/typegoose/lib/types';
+
 import { ProductModel } from './product.model';
+import { ReviewModel } from 'src/review/review.model';
+import { FindProductDto } from './dto/find-product.dto';
+import { CreateProductDto } from './dto/create-product.dto';
 
 @Injectable()
 export class ProductService {

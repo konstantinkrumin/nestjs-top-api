@@ -1,4 +1,5 @@
 import { ConfigService } from '@nestjs/config';
+
 import { ITelegramOptions } from 'src/telegram/telergram.interface';
 
 export const getTelegramConfig = (configService: ConfigService): ITelegramOptions => {

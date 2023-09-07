@@ -1,8 +1,9 @@
 import { HttpService, Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { API_URL, CLUSTER_FIND_ERROR, SALARY_CLUSTER_ID } from './hh.constants';
+
 import { HhResponse } from './hh.models';
 import { HhData } from 'src/top-page/top-page.model';
+import { API_URL, CLUSTER_FIND_ERROR, SALARY_CLUSTER_ID } from './hh.constants';
 
 @Injectable()
 export class HhService {

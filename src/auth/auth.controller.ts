@@ -1,12 +1,13 @@
 import {
-	BadRequestException,
 	Body,
-	Controller,
-	HttpCode,
 	Post,
 	UsePipes,
+	HttpCode,
+	Controller,
 	ValidationPipe,
+	BadRequestException,
 } from '@nestjs/common';
+
 import { ALREADY_REGISTERED_ERROR } from './auth.constants';
 import { AuthService } from './auth.service';
 import { AuthDto } from './dto/auth.dto';
