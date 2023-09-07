@@ -1,4 +1,3 @@
-import { HhData } from './top-page.model';
 import { HhService } from './../hh/hh.service';
 import { TopPageService } from './top-page.service';
 import {
@@ -7,7 +6,6 @@ import {
 	Delete,
 	Get,
 	HttpCode,
-	Logger,
 	NotFoundException,
 	Param,
 	Patch,
