@@ -7,6 +7,7 @@ import {
 	Delete,
 	Get,
 	HttpCode,
+	Logger,
 	NotFoundException,
 	Param,
 	Patch,
@@ -18,12 +19,14 @@ import { FindTopPageDto } from './dto/find-top-page.dto';
 import { CreateTopPageDto } from './dto/create-top-page.dto';
 import { IdValidationPipe } from 'src/pipes/id-validation.pipe';
 import { TOP_PAGE_NOT_FOUND_ERROR } from './top-page.constants';
+import { Cron, CronExpression, SchedulerRegistry } from '@nestjs/schedule';
 
 @Controller('top-page')
 export class TopPageController {
 	constructor(
 		private readonly topPageService: TopPageService,
 		private readonly hhService: HhService,
+		private readonly scheduleRegistry: SchedulerRegistry,
 	) {}
 
 	@Post('create')
@@ -78,8 +81,9 @@ export class TopPageController {
 		return this.topPageService.findByText(text);
 	}
 
-	@Post('test')
+	@Cron(CronExpression.EVERY_DAY_AT_MIDNIGHT, { name: 'test' })
 	async test() {
+		const job = this.scheduleRegistry.getCronJob('test');
 		const data = await this.topPageService.findForHhUpdate(new Date());
 
 		for (let page of data) {
