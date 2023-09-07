@@ -6,6 +6,7 @@ import { CreateTopPageDto } from './dto/create-top-page.dto';
 import { FindTopPageDto } from './dto/find-top-page.dto';
 import { JwtAuthGuard } from 'src/auth/guards/jwt.guard';
 import { addDays } from 'date-fns';
+import { Types } from 'mongoose';
 
 @Injectable()
 export class TopPageService {
@@ -68,13 +69,19 @@ export class TopPageService {
 	}
 
 	@UseGuards(JwtAuthGuard)
-	async updateById(id: string, dto: CreateTopPageDto) {
+	async updateById(id: string | Types.ObjectId, dto: CreateTopPageDto) {
 		return this.topPageModel.findByIdAndUpdate(id, dto, { new: true }).exec();
 	}
 
 	async findForHhUpdate(date: Date) {
 		return this.topPageModel
-			.find({ firstCategory: 0, 'hh.updatedAt': { $lt: addDays(date, -1) } })
+			.find({
+				firstCategory: 0,
+				$or: [
+					{ 'hh.updatedAt': { $lt: addDays(date, -1) } },
+					{ 'hh.updatedAt': { $exists: false } },
+				],
+			})
 			.exec();
 	}
 }

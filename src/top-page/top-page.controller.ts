@@ -1,3 +1,5 @@
+import { HhData } from './top-page.model';
+import { HhService } from './../hh/hh.service';
 import { TopPageService } from './top-page.service';
 import {
 	Body,
@@ -19,7 +21,10 @@ import { TOP_PAGE_NOT_FOUND_ERROR } from './top-page.constants';
 
 @Controller('top-page')
 export class TopPageController {
-	constructor(private readonly topPageService: TopPageService) {}
+	constructor(
+		private readonly topPageService: TopPageService,
+		private readonly hhService: HhService,
+	) {}
 
 	@Post('create')
 	async create(@Body() dto: CreateTopPageDto) {
@@ -71,5 +76,16 @@ export class TopPageController {
 	@Get('textSearch/:text')
 	async textSearch(@Param('text') text: string) {
 		return this.topPageService.findByText(text);
+	}
+
+	@Post('test')
+	async test() {
+		const data = await this.topPageService.findForHhUpdate(new Date());
+
+		for (let page of data) {
+			const hhData = await this.hhService.getData(page.category);
+			page.hh = hhData;
+			await this.topPageService.updateById(page._id, page);
+		}
 	}
 }
